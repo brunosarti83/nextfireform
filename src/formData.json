@@ -1,5 +1,5 @@
 {
-  "items": [
+  "fields": [
     {
       "type": "text",
       "label": "Nombre completo",
@@ -30,7 +30,9 @@
       "label": "¿Acepta los términos y condiciones?",
       "name": "terms_and_conditions",
       "required": true
-    },
+    }
+  ],
+  "buttons": [
     { 
       "type": "submit", 
       "label": "Enviar" 

@@ -5,14 +5,14 @@ type formProps = {
 } 
 export default function Form(props: formProps) {
   const {formData} = props
-  const {items} = formData
+  const {fields} = formData
 
   return (
     <div>
         <form>
-            {items.map((item: formItem, index: number) => (
+            {fields.map((field: formItem, index: number) => (
                 <div key={index}>
-                    <FormField item={item} />
+                    <FormField field={field} />
                 </div>
             ))}
         </form>

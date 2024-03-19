@@ -1,8 +1,14 @@
+import Form from "@/Components/Form/Form";
+import { formData } from "@/types";
+import { promises as fs } from 'fs';
 
+export default async function Home() {
+  const file = await fs.readFile(process.cwd() + '/src/formData.json', 'utf8');
+  const data:formData = JSON.parse(file);
 
-export default function Home() {
   return (
     <main className="">
+      <Form formData={data}/>
     </main>
   );
 }
