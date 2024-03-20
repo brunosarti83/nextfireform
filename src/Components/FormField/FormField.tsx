@@ -3,6 +3,7 @@ import {formItem} from '@/types';
 // components
 import TextField from '../TextField/TextField';
 import EmailField from '../EmailField/EmailField';
+import DateField from '../DateField/DateField';
 export interface formFieldProps {
     field: formItem
 }
