@@ -1,6 +1,8 @@
 "use client"
 import {formItem} from '@/types';
 import {useState} from 'react';
+import { Input } from "@/Components/ui/input"
+
 export interface formFieldProps {
     item: formItem
 }
@@ -27,10 +29,16 @@ export default function TextField(props: formFieldProps) {
         setError(validate(e.target.value, item.required));
     }
   return (
-    <div>
-        <label>{item.label}</label>
-        <input type="text" name={item.name} onChange={onChange} value={value}/>
-        <span>{error}</span>
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+        <label htmlFor={item.name}>{item.label}</label>
+        <Input 
+        type={item.type} 
+        name={item.name} 
+        onChange={onChange} 
+        value={value}
+        className="w-[50ch]"
+        />
+        <span className='text-gray-500'>{error}</span>
     </div>
   )
 }

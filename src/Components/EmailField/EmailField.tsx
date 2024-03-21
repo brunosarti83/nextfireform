@@ -1,6 +1,7 @@
 "use client"
 import {formItem} from '@/types';
 import {useState} from 'react';
+import { Input } from "@/Components/ui/input"
 export interface formFieldProps {
     item: formItem
 }
@@ -27,8 +28,15 @@ export default function EmailField(props: formFieldProps) {
   return (
     <div>
         <label>{item.label}</label>
-        <input type="email" name={item.name} onChange={onChange} value={value} placeholder={'name@myemail.com'}/>
-        <span>{error}</span>
+        <Input 
+        type={item.type} 
+        name={item.name} 
+        onChange={onChange} 
+        value={value} 
+        placeholder={'name@myemail.com'}
+        className="w-[50ch]"
+        />
+        <span className='text-gray-500'>{error}</span>
     </div>
   )
 }

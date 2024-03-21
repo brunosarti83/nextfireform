@@ -8,8 +8,8 @@ export default function Form(props: formProps) {
   const {fields} = formData
 
   return (
-    <div>
-        <form>
+    <div className='w-1/2 m-auto'>
+        <form className="flex flex-col space-y-4">
             {fields.map((field: formItem, index: number) => (
                 <div key={index}>
                     <FormField field={field} />

@@ -4,6 +4,8 @@ import {formItem} from '@/types';
 import TextField from '../TextField/TextField';
 import EmailField from '../EmailField/EmailField';
 import DateField from '../DateField/DateField';
+import SelectField from '../SelectField/SelectField';
+import CheckboxField from '../CheckboxField/CheckboxField';
 export interface formFieldProps {
     field: formItem
 }
