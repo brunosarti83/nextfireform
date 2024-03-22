@@ -7,7 +7,10 @@ import DateField from '../DateField/DateField';
 import SelectField from '../SelectField/SelectField';
 import CheckboxField from '../CheckboxField/CheckboxField';
 export interface formFieldProps {
-    field: formItem
+    field: formItem,
+    stateData: {[key:string]:string},
+    errors: {[key:string]:string},
+    onChange: (e: any) => void
 }
 export default function FormField(props: formFieldProps) {
   const {field} = props
