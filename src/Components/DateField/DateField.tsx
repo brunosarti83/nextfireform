@@ -1,6 +1,5 @@
 "use client"
 import {formItem} from "@/types"
-import {useState} from "react"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -13,14 +12,22 @@ import {
 } from "@/Components/ui/popover"
 
 export interface formFieldProps {
-    item: formItem
+    item: formItem,
+    stateData: {[key:string]:any},
+    errors: {[key:string]:string},
+    onChange: (e: any) => void
 }
  
-export default function DateField(props: formFieldProps) {
-  const {item} = props
-
-  const [date, setDate] = useState<Date>()
- 
+export default function DateField({item, stateData, errors, onChange}: formFieldProps) {
+    const returnDate = (date:Date) => {
+      // returnDate formats the return of onSelect from date to an event like response that onChange can work with
+    return {
+        target: {
+            name: item.name,
+            value: date
+        }
+    }
+  }
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -28,18 +35,18 @@ export default function DateField(props: formFieldProps) {
           variant={"outline"}
           className={cn(
             "w-[280px] justify-start text-left font-normal",
-            !date && "text-muted-foreground"
+            !stateData[item.name] && "text-muted-foreground"
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? format(date, "PPP") : <span>{item.label}</span>}
+          {stateData[item.name] ? format(stateData[item.name], "PPP") : <span>{item.label}</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
         <Calendar
           mode="single"
-          selected={date}
-          onSelect={setDate}
+          selected={stateData[item.name]}
+          onSelect={(date) => onChange(returnDate(date as Date))}
           initialFocus
         />
       </PopoverContent>

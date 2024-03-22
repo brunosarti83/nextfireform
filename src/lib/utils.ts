@@ -5,9 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function validate(data:{[key:string]: string}) {
-
-  const errors: {[key:string]: string} = {}
+export function validate(data:{[key:string]: any}, errors:{[key:string]:string}) {
 
   Object.entries(data).forEach(([key, value]) => {
     if (key === 'full_name') {

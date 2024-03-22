@@ -8,22 +8,32 @@ import {
     SelectValue,
 } from "@/Components/ui/select"
 import { formItem } from "@/types"
-import { useState } from "react";
 
 export interface formFieldProps {
-    item: formItem
+    item: formItem,
+    stateData: {[key:string]:any},
+    errors: {[key:string]:string},
+    onChange: (e: any) => void
 }
 
-export default function SelectField(props: formFieldProps) {
-    const {item} = props
-    const [value, setValue] = useState<string>('');
+export default function SelectField({item, stateData, errors, onChange}: formFieldProps) {
 
-    const onChange = (value: string) => {
-        setValue(value)
+    const returnOption = (option:string) => {
+      // returnOption formats the return of onSelect from date to an event like response that onChange can work with
+        return {
+            target: {
+                name: item.name,
+                value: option
+            }
+        }
     }
 
   return (
-    <Select onValueChange={onChange} value={value} name={item.name}>
+    <Select 
+        onValueChange={(option) => onChange(returnOption(option))} 
+        value={stateData[item.name]} 
+        name={item.name}
+    >
         <SelectTrigger  className="w-[50ch]">
             <SelectValue placeholder={item.label} />
         </SelectTrigger>

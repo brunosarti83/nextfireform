@@ -8,23 +8,22 @@ import SelectField from '../SelectField/SelectField';
 import CheckboxField from '../CheckboxField/CheckboxField';
 export interface formFieldProps {
     field: formItem,
-    stateData: {[key:string]:string},
+    stateData: {[key:string]:any},
     errors: {[key:string]:string},
     onChange: (e: any) => void
 }
-export default function FormField(props: formFieldProps) {
-  const {field} = props
+export default function FormField({field, stateData, errors, onChange}: formFieldProps) {
     switch (field.type) {
         case "text":
-            return <TextField item={field}/>
+            return <TextField item={field} stateData={stateData} errors={errors} onChange={onChange}/>
         case "email":
-            return <EmailField item={field}/>       
+            return <EmailField item={field} stateData={stateData} errors={errors} onChange={onChange}/>       
         case "date":
-            return <DateField item={field}/>  
+            return <DateField item={field} stateData={stateData} errors={errors} onChange={onChange}/>  
         case "select":
-            return <SelectField item={field}/>     
+            return <SelectField item={field} stateData={stateData} errors={errors} onChange={onChange}/>     
         case "checkbox":
-            return <CheckboxField item={field}/>           
+            return <CheckboxField item={field} stateData={stateData} errors={errors} onChange={onChange}/>           
         default:
             return <></>
     }
