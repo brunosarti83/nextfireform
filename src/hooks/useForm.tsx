@@ -5,11 +5,11 @@ export const useForm = (formFields:string[], validate:Function) => {
     formFields.forEach((field:string) => {
         initialState[field] = ''
     })
-    const [stateData, setstateData] = useState<{[key:string]:any}>({...initialState});
+    const [stateData, setStateData] = useState<{[key:string]:any}>({...initialState});
     const [errors, setErrors] = useState<{[key:string]:string}>({...initialState});
 
     const onChange = (e: any) => {
-        setstateData({
+        setStateData({
             ...stateData,
             [e.target.name]: e.target.value
         });
@@ -19,5 +19,10 @@ export const useForm = (formFields:string[], validate:Function) => {
         }, errors))
     }
 
-    return {stateData, errors, onChange}
+    const clearData = () => {
+        setStateData({...initialState})
+        setErrors({...initialState})
+    }
+
+    return {stateData, errors, onChange, clearData}
 }
