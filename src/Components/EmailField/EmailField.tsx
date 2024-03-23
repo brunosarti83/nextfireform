@@ -19,7 +19,7 @@ export default function EmailField({item, stateData, errors, onChange}: formFiel
         placeholder={'name@myemail.com'}
         className="w-[50ch]"
         />
-        <span className='text-gray-500'>{errors[item.name]}</span>
+        <span className='text-rose-500'>{errors[item.name]}</span>
     </div>
   )
 }

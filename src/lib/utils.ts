@@ -11,14 +11,19 @@ export function validate(data:{[key:string]: any}, errors:{[key:string]:string})
     if (key === 'full_name') {
       if (value.split(' ').length < 2) {
         errors[key] = 'Please enter your full name'
+      } else {
+        errors[key] = ''
       }
     }
     if (key === 'email') {
       const mailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
       if (!mailRegex.test(value)) {
         errors[key] = 'Invalid email'
+      } else {
+        errors[key] = ''
       }
     }
   })
   return errors
 }
+

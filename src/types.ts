@@ -15,5 +15,6 @@ export type formItem = {
 export type buttonItem = {
     type: "submit" | "reset",
     label: string
+    variant?: "primary" | "secondary" | "outline" | "ghost" | "link" | "destructive"
 }
 
