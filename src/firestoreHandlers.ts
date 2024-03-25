@@ -1,6 +1,6 @@
 // firestore CRUD https://www.youtube.com/watch?v=uikATllLdRc
 
-import {collection, addDoc, onSnapshot, query, doc, deleteDoc} from 'firebase/firestore'
+import {collection, addDoc, onSnapshot, query, doc, deleteDoc, updateDoc} from 'firebase/firestore'
 import {db} from '../firebaseConfig'
 
 // Add item to database
@@ -28,6 +28,18 @@ export const deleteItem = async (id: string): Promise<boolean> => {
     try {
         const docRef = doc(db, 'items', id)
         await deleteDoc(docRef)
+        return true
+    } catch (error) {
+        console.log(error)
+        return false
+    }
+}
+
+// Modify item in database
+export const modifyItem = async (id: string, stateData: {[key:string]:any}) => {
+    try {
+        const docRef = doc(db, 'items', id)
+        await updateDoc(docRef, stateData)
         return true
     } catch (error) {
         console.log(error)
