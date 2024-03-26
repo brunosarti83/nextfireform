@@ -10,13 +10,14 @@ export const addItem = async (stateData: {[key:string]:any}) => {
     
 
 // Read items from database
-export const readItems = () => {
+export const readItems = (setter: Function) => {
     const q = query(collection(db, 'items'))
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        const itemsArr = []
+        const itemsArr:any[] = []
         querySnapshot.forEach((doc) => {
             itemsArr.push({...doc.data(), id: doc.id})
         })
+        setter([...itemsArr])     
     })
     return unsubscribe
     // if this works as I expect use in useEffect as const unsubscribe = readItems() and return () => unsubscribe()

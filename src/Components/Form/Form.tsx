@@ -5,6 +5,7 @@ import { useForm } from '@/hooks/useForm';
 import { validate } from '@/lib/utils';
 import { Button } from "@/Components/ui/button"
 import { addItem } from '@/firestoreHandlers';
+import { useRouter } from 'next/navigation'
 
 type formProps = {
     formData: formData
@@ -12,6 +13,8 @@ type formProps = {
 export default function Form({formData}: formProps) {
     // get fields and buttons from props
     const {fields, buttons} = formData
+
+    const router = useRouter()
 
     // declare useForm Hook
     const {stateData, errors, onChange, clearData} = useForm(fields.map(field => field.name), validate)
@@ -25,7 +28,7 @@ export default function Form({formData}: formProps) {
         try {
             await addItem(stateData)
             clearData() 
-            // redirect to results page
+            router.push('/results')
         } catch (error) {
             console.log(error) // replace with toast
         }
