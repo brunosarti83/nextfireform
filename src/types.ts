@@ -18,3 +18,11 @@ export type buttonItem = {
     variant?: "primary" | "secondary" | "outline" | "ghost" | "link" | "destructive"
 }
 
+export type entry = {
+    id: string,
+    full_name: string,
+    email: string,
+    country_of_origin: string,
+    birth_date: Date
+}
+

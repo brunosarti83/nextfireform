@@ -1,7 +1,10 @@
 "use client"
 
+import { Button } from "@/Components/ui/button"
 import { readItems } from "@/firestoreHandlers"
 import { useEffect, useState } from "react"
+import { DataTable } from "@/Components/DataTable/DataTable"
+import { columns } from "@/Components/DataTable/columns"
 
 export default function Results() {
 
@@ -13,8 +16,12 @@ export default function Results() {
         const unsubscribe = readItems(setItems)
         return () => unsubscribe()
     },[])
-    
+
   return (
-    <div>Results</div>
+    <div>
+        <h1>Results</h1>
+        <DataTable columns={columns} data={items} />
+        <Button onClick={() => console.log(items)}>Log</Button>
+    </div>
   )
 }
